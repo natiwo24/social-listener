@@ -2,177 +2,381 @@
 
 ## Executive Summary
 
-**Social Listener** is a daily intelligence platform that monitors developer conversations across Reddit and X (Twitter) to surface trending themes, sentiment patterns, pain points, and highlights in the developer community. The system delivers actionable insights via daily email summaries for strategic decision-making by product and marketing teams.
+**Social Listener** is a daily intelligence platform that monitors developer conversations across Reddit and X (Twitter) to track sentiment, pain points, and highlights for **Microsoft's developer tools ecosystem**—specifically GitHub Copilot, Microsoft Azure, and Azure AI Foundry—along with their competitors. The system delivers actionable insights via daily email summaries and real-time alerts for high-engagement posts, enabling strategic decision-making by product and marketing teams.
 
 ---
 
 ## 1. Product Vision & Goals
 
 ### Vision Statement
-*Enable product and marketing leaders to understand what developers are talking about in real-time, so they can make informed decisions about product direction, messaging, and go-to-market strategy.*
+*Enable product and marketing leaders to understand how developers perceive Microsoft's developer tools (GitHub Copilot, Azure, Azure AI Foundry) and competing products, so they can make informed decisions about product positioning, messaging, and competitive strategy.*
 
 ### Primary Objectives
-1. **Identify Emerging Trends** - Detect new technologies, frameworks, and practices gaining traction
-2. **Understand Developer Sentiment** - Measure positive/negative sentiment toward tools, platforms, and practices
-3. **Surface Pain Points** - Identify recurring problems developers face (UX, pricing, documentation, etc.)
-4. **Highlight Wins** - Recognize what developers appreciate and what's working well
-5. **Enable Marketing Insights** - Provide raw material for content, positioning, and campaign strategy
+1. **Track Product Sentiment** - Monitor positive/negative sentiment for target Microsoft products and adjacent tools
+2. **Competitive Intelligence** - Understand how competitors are perceived and track comparison discussions
+3. **Surface Pain Points** - Identify recurring problems developers face with target products
+4. **Highlight Wins** - Recognize what developers appreciate about target products
+5. **Enable Rapid Response** - Alert on high-engagement posts (positive or negative) for immediate action
 
 ### Success Criteria
 - Daily email sends without errors (99%+ uptime)
 - Sentiment accuracy ≥80% on sample data
-- Insights are actionable (marketing team uses weekly)
-- Covers 5+ major developer communities
-- Identifies at least 3-5 new trending themes per week
+- Track sentiment for all target products and top 3 competitors per category
+- Identify product-specific pain points (≥3 per product per week)
+- Real-time alerts for high-engagement posts (>100 upvotes or >50 retweets)
+- Detect competitive comparison mentions with 90%+ recall
 
 ---
 
-## 2. Target Users & Use Cases
+## 2. Target Products & Ecosystem
+
+### Primary Target Products
+
+| Product | Aliases / Search Terms | Category |
+|---------|------------------------|----------|
+| **GitHub Copilot** | "Copilot", "GitHub Copilot", "Copilot Chat", "GH Copilot", "copilot ai" | AI Coding Assistant |
+| **Microsoft Azure** | "Azure", "Microsoft Azure", "Azure Cloud", "MS Azure" | Cloud Platform |
+| **Azure AI Foundry** | "Azure AI Foundry", "Azure AI services", "Azure OpenAI", "Azure Cognitive Services", "Azure AI Studio", "Microsoft Foundry" | AI Platform |
+
+### Adjacent Products to Track
+
+These products are part of the broader Microsoft developer ecosystem and often appear in related discussions:
+
+| Product | Relationship | Why Track |
+|---------|--------------|-----------|
+| **VS Code** | Primary IDE for Copilot | Copilot experience tied to VS Code quality |
+| **GitHub Actions** | CI/CD platform | Often discussed alongside Azure DevOps |
+| **Azure DevOps** | Developer workflow | Competes with GitHub in some scenarios |
+| **Azure Functions** | Serverless compute | High-volume discussion, sentiment indicator |
+| **Azure Kubernetes Service (AKS)** | Container orchestration | Enterprise cloud indicator |
+| **GitHub** (general) | Code hosting platform | Context for Copilot discussions |
+
+---
+
+## 3. Competitive Landscape
+
+### Direct Competitors by Category
+
+| Target Product | Direct Competitors | Notes |
+|----------------|-------------------|-------|
+| **GitHub Copilot** | Cursor, Tabnine, Codeium, Amazon CodeWhisperer, JetBrains AI Assistant, Sourcegraph Cody | AI coding assistant market |
+| **Microsoft Azure** | AWS, Google Cloud Platform (GCP), DigitalOcean, Vercel, Cloudflare | Cloud infrastructure |
+| **Azure AI Foundry** | OpenAI API (direct), AWS Bedrock, Google Vertex AI, Hugging Face, Replicate, Anthropic API | AI/ML platforms |
+
+### Competitive Signals to Detect
+
+- **Direct comparisons**: "Copilot vs Cursor", "Azure vs AWS"
+- **Switching intent**: "thinking of moving from X to Y", "switched from X to Y"
+- **Pricing discussions**: Cost comparisons between products
+- **Feature parity**: "X has this but Y doesn't"
+- **Migration stories**: Developers sharing transition experiences
+
+### Competitive Metrics to Track
+
+| Metric | Description |
+|--------|-------------|
+| Share of Voice | % of mentions vs competitors in category |
+| Sentiment Differential | Our sentiment vs competitor sentiment |
+| Comparison Win Rate | When directly compared, % favoring our product |
+| Switching Direction | Net flow of "switched to" vs "switched from" mentions |
+
+---
+
+## 4. Target Users & Use Cases
 
 ### Primary Users
-1. **Natalie (Product Marketing)** - Uses insights for campaign strategy, messaging, content planning
+1. **Natalie (Product Marketing)** - Uses insights for campaign strategy, messaging, competitive positioning
 2. **Spencer (CEO/Technical)** - Uses insights for product roadmap, competitive intelligence
-3. **Marketing Managers** - Develop content calendars, identify whitepaper/case study topics
+3. **Marketing Managers** - Develop content calendars, respond to competitive narratives
 
 ### Key Use Cases
 
-**Use Case 1: Weekly Content Planning**
-- Marketing manager reviews Friday email
-- Identifies trending discussion around "API authentication"
-- Plans blog post/tutorial on the topic
-- Tags sentiment as "pain point" to address
+**Use Case 1: Copilot Competitive Response**
+- Alert fires: High-engagement Reddit post comparing Copilot unfavorably to Cursor
+- Marketing reviews the specific complaints (e.g., "Cursor's multi-file editing is better")
+- Team decides whether to respond, create content addressing the gap, or flag to product
 
-**Use Case 2: Product Direction**
-- Spencer sees consistent complaints about "deployment complexity"
-- Escalates to product team as potential feature opportunity
-- Tracks sentiment trend over 2 weeks to validate priority
+**Use Case 2: Azure Sentiment Monitoring**
+- Weekly report shows Azure sentiment dropped 8% while AWS sentiment rose
+- Team investigates: complaints about Azure Portal UX are spiking
+- Escalates to product team with specific pain points and quotes
 
-**Use Case 3: Competitive Intelligence**
-- Marketing spots competitors being mentioned positively for "developer experience"
-- Shares with product team to inform UX improvements
-- Uses sentiment data to benchmark perception
+**Use Case 3: Foundry Launch Tracking**
+- New Azure AI Studio feature launches
+- Monitor initial sentiment and competitor comparisons
+- Identify early issues before they become widespread complaints
+
+**Use Case 4: High-Engagement Alert Response**
+- Real-time alert: Tweet with 200+ retweets praising Copilot
+- Marketing amplifies the positive content
+- OR: Alert for negative viral post, team prepares response strategy
 
 ---
 
-## 3. Scope & Features
+## 5. Scope & Features
 
 ### MVP (Phase 1-3)
 
 #### Data Collection (Phase 2)
-- [ ] Reddit: Monitor 8 major subreddits (python, javascript, webdev, golang, rust, programming, learnprogramming, reactjs)
-- [ ] X/Twitter: Search trending developer keywords
-- [ ] Collect 100+ posts/comments per source per day
-- [ ] Store raw data with metadata (author, score, timestamp, source)
+- [ ] **Reddit - Product-Specific Communities**:
+  - r/MicrosoftCopilot, r/github, r/vscode
+  - r/azure, r/AZURE, r/AzureStack
+  - r/MachineLearning, r/artificial, r/LocalLLaMA
+- [ ] **Reddit - General Developer Communities** (for competitive context):
+  - r/programming, r/webdev, r/dotnet, r/devops
+- [ ] **X/Twitter - Product Search Terms**:
+  - Product mentions: `"GitHub Copilot"`, `"Azure AI"`, `"Azure Foundry"`, `"Microsoft Azure"`
+  - Handles: `@GitHubCopilot`, `@Azure`, `@AzureAI`
+  - Hashtags: `#GitHubCopilot`, `#Azure`, `#AzureAI`
+  - Competitor terms: `"Cursor AI"`, `"Cursor editor"`, `"AWS"`, `"Tabnine"`, `"CodeWhisperer"`
+- [ ] Collect 200+ posts/comments per product category per day
+- [ ] Store raw data with metadata (author, score/engagement, timestamp, source, product_tags)
 
-#### Analysis (Phase 3)
-- [ ] **Sentiment Analysis**: Classify as Positive / Neutral / Negative
-- [ ] **Theme Extraction**: Identify topics (e.g., "API security", "performance", "DX")
-- [ ] **Pain Point Detection**: Flag complaints, bugs, friction
-- [ ] **Highlight Detection**: Flag praise, workarounds, solutions
-- [ ] **Technology Identification**: Extract mentions of specific tools/frameworks
+#### Product-Specific Analysis (Phase 3)
+- [ ] **Per-Product Sentiment**: Track sentiment separately for each target product
+- [ ] **Pain Point Detection**: Flag complaints, bugs, friction tied to specific products
+- [ ] **Highlight Detection**: Flag praise, success stories for specific products
+- [ ] **Competitive Analysis**:
+  - Detect direct product comparisons ("X vs Y")
+  - Track switching intent signals
+  - Calculate share of voice vs competitors
+- [ ] **Engagement Scoring**: Flag high-engagement posts for alerting
 
 #### Daily Email Report
-- [ ] **Top 5 Themes**: Most discussed topics with sentiment breakdown
-- [ ] **Sentiment Summary**: % positive/neutral/negative across all posts
-- [ ] **Top 3 Pain Points**: With representative quotes
-- [ ] **Top 3 Highlights**: Positive trends and praise
-- [ ] **Trending Technologies**: New mentions or growing interest
-- [ ] **Actionable Insights**: Summary bullets for each section
+- [ ] **Executive Summary**: Quick pulse across all target products
+- [ ] **Per-Product Sections**: Sentiment, volume, top pain point, top highlight for each
+- [ ] **Competitive Intelligence**: Share of voice, comparison win rate, switching signals
+- [ ] **Adjacent Product Pulse**: Brief sentiment summary for VS Code, GitHub Actions, etc.
+- [ ] **Actionable Insights**: Recommended responses or follow-ups
+
+#### Real-Time Alerts (Phase 3)
+- [ ] **High-Engagement Positive**: Posts with >100 upvotes or >50 retweets praising target products
+- [ ] **High-Engagement Negative**: Posts with >100 upvotes or >50 retweets criticizing target products
+- [ ] **Viral Competitive Comparison**: High-engagement posts comparing our products to competitors
+- [ ] **Delivery**: Slack notification and/or email within 15 minutes of detection
 
 #### Technical Foundation (Phase 1)
-- [ ] SQLite database with posts, comments, analysis results
-- [ ] Configuration management for API credentials
+- [ ] SQLite database with posts, comments, analysis results, product tags
+- [ ] Configuration management for API credentials and product aliases
 - [ ] Error handling and logging
 - [ ] Unit tests (80%+ coverage)
 
 ### Future (Phase 4+)
-- [ ] Dashboard for trend visualization
-- [ ] Historical trend analysis (week-over-week, month-over-month)
-- [ ] Sentiment trend lines
+- [ ] Dashboard for product sentiment visualization
+- [ ] Historical trend analysis (week-over-week, month-over-month per product)
+- [ ] Sentiment trend lines by product and competitor
 - [ ] Azure deployment for scaling
 - [ ] Integration with marketing tools (Slack, Microsoft Teams)
-- [ ] Custom keyword monitoring
-- [ ] Competitive mention tracking
+- [ ] Automated competitive report generation
+- [ ] Influencer/advocate identification
 
 ### Out of Scope (v1)
-- Real-time alerts
+- Feature-level granularity (e.g., Copilot Chat vs code completion)
 - Historical data >6 months
-- Community sentiment prediction
-- Influencer identification
+- Sentiment prediction/forecasting
+- Automated response posting
 
 ---
 
-## 4. Data & Technical Requirements
+## 6. Data & Technical Requirements
 
 ### Data Sources
-- **Reddit**: r/programming, r/Python, r/javascript, r/webdev, r/golang, r/rust, r/learnprogramming, r/reactjs
-- **X/Twitter**: Free tier with focused keywords (e.g., #DevTips, #WebDevelopment, etc.)
+
+**Reddit Communities**:
+| Category | Subreddits |
+|----------|------------|
+| Product-Specific | r/MicrosoftCopilot, r/github, r/vscode, r/azure, r/AZURE, r/AzureStack |
+| AI/ML | r/MachineLearning, r/artificial, r/LocalLLaMA, r/ChatGPT |
+| General Dev | r/programming, r/webdev, r/dotnet, r/devops, r/coding |
+
+**X/Twitter Search Queries**:
+| Category | Search Terms |
+|----------|--------------|
+| GitHub Copilot | `"GitHub Copilot"`, `"Copilot AI"`, `@GitHubCopilot`, `#GitHubCopilot` |
+| Azure | `"Microsoft Azure"`, `"Azure cloud"`, `@Azure`, `#Azure` |
+| Azure AI | `"Azure AI"`, `"Azure OpenAI"`, `"Azure Foundry"`, `@AzureAI` |
+| Competitors | `"Cursor AI"`, `"Cursor editor"`, `"Tabnine"`, `"CodeWhisperer"`, `"AWS Bedrock"` |
 
 ### Data Collection
-- **Frequency**: Daily at 6 AM UTC
-- **Volume**: 100-200 posts/comments per source
+- **Frequency**: Daily at 6 AM UTC (batch), continuous for high-engagement alerts
+- **Volume**: 200+ posts/comments per product category per day
 - **Storage**: SQLite locally, migrate to Cloud SQL in Phase 4
 - **Retention**: 6 months (180 days) for analysis
 
 ### Analysis Requirements
 - **Sentiment Accuracy**: ≥80% on validation set
-- **Processing Latency**: <1 hour from collection to email send
-- **Cost**: Estimate $100-200/month for Claude API usage
+- **Product Attribution Accuracy**: ≥90% (correctly tagging which product is discussed)
+- **Processing Latency**: <1 hour from collection to daily email send
+- **Alert Latency**: <15 minutes for high-engagement posts
+- **Cost**: Estimate $150-250/month for Claude API usage (increased for product analysis)
 - **Rate Limits**: Respect all API rate limits gracefully
 
 ### Delivery
-- **Email Time**: 9 AM UTC daily
-- **Format**: HTML email with sections, links back to source posts
+- **Daily Email Time**: 9 AM UTC
+- **Alerts**: Within 15 minutes of high-engagement threshold
+- **Format**: HTML email with product sections, links back to source posts
 - **Recipients**: natalie@, spencer@, marketing_team@
-- **Fallback**: If email fails, post summary to Slack (future)
+- **Alert Channels**: Slack (primary), email (backup)
 
 ---
 
-## 5. Product Requirements
+## 7. Product Requirements
 
-### Email Report Template
+### Daily Email Report Template
 
 ```
 Subject: Social Listener Daily Brief - [DATE]
 From: social-listener@[domain]
 
-[Header]
-Social Listener Daily Brief
+═══════════════════════════════════════════════════════════════
+SOCIAL LISTENER DAILY BRIEF
 Monday, January 20, 2026
+═══════════════════════════════════════════════════════════════
 
-[Section 1: Overall Sentiment]
-Daily Sentiment Summary
-- Positive: 45% (↑ from 42% yesterday)
-- Neutral: 35%
-- Negative: 20% (↓ from 23% yesterday)
-Trending: Sentiment improving for API tools
+[EXECUTIVE SUMMARY]
+• GitHub Copilot: 62% positive (↑3%), 47 mentions
+• Microsoft Azure: 55% positive (stable), 112 mentions
+• Azure AI Foundry: 48% positive (↓5%), 23 mentions
+• 2 high-engagement alerts triggered (see below)
 
-[Section 2: Top 5 Themes]
-1. API Security (28 mentions, 52% positive)
-   - Concerns about OAuth implementation
-   - Praise for OpenID Connect clarity
-   
-2. Performance Optimization (22 mentions, 60% positive)
-   - Pain: Database query optimization
-   - Highlight: New profiling tools
-   
-[Section 3: Top Pain Points]
-1. "Deployment complexity is killing us" - r/webdev, 234 upvotes
-2. "Documentation is incomplete" - X, @devtips
-3. "Breaking changes without migration guides" - r/python
+───────────────────────────────────────────────────────────────
+[SECTION 1: GITHUB COPILOT]
+───────────────────────────────────────────────────────────────
+Sentiment: 62% positive (↑3% from yesterday)
+Volume: 47 mentions across Reddit and X
+Share of Voice vs Competitors: 38% (Cursor: 31%, Tabnine: 18%, Other: 13%)
 
-[Section 4: Top Highlights]
-1. "TypeScript adoption is making the ecosystem better" - r/javascript
-2. "Rust community is incredibly supportive" - r/rust
-3. "New framework is beautifully designed" - X
+Top Pain Point:
+"Copilot suggestions have gotten noticeably worse since the last
+VS Code update. Anyone else seeing this?"
+- r/vscode, 156 upvotes
 
-[Section 5: Trending Technologies]
-- Go (↑ 18% from last week) - Cloud infrastructure, microservices
-- Rust (↑ 12%) - Systems programming, WebAssembly
-- Python (↓ 5%) - Still dominant, but slight dip in enthusiasm
+Top Highlight:
+"Copilot Chat just saved me 2 hours debugging a regex issue.
+Explained the problem AND fixed it."
+- X/@dev_sarah, 89 retweets
 
-[Footer]
-View full analysis | Configure preferences | Archive
+Competitive Context:
+• 8 direct comparisons to Cursor found (5 favored Copilot, 3 favored Cursor)
+• 2 "switched from Tabnine" mentions (both positive about switch)
+
+───────────────────────────────────────────────────────────────
+[SECTION 2: MICROSOFT AZURE]
+───────────────────────────────────────────────────────────────
+Sentiment: 55% positive (stable)
+Volume: 112 mentions across Reddit and X
+Share of Voice vs Competitors: 28% (AWS: 45%, GCP: 22%, Other: 5%)
+
+Top Pain Point:
+"Azure Portal is painfully slow today. Takes 10+ seconds to load
+any blade. Is there an outage?"
+- r/azure, 234 upvotes
+
+Top Highlight:
+"Azure Functions cold start improvements in the latest runtime are
+actually noticeable. Props to the team."
+- r/dotnet, 67 upvotes
+
+Competitive Context:
+• 12 Azure vs AWS comparisons (7 favored AWS, 4 favored Azure, 1 neutral)
+• Pricing mentioned negatively in 4 posts
+
+───────────────────────────────────────────────────────────────
+[SECTION 3: AZURE AI FOUNDRY]
+───────────────────────────────────────────────────────────────
+Sentiment: 48% positive (↓5% from yesterday)
+Volume: 23 mentions across Reddit and X
+Share of Voice vs Competitors: 15% (OpenAI direct: 52%, AWS Bedrock: 18%, Other: 15%)
+
+Top Pain Point:
+"Azure AI Studio documentation is a maze. Spent 3 hours trying to
+figure out how to deploy a custom model."
+- r/MachineLearning, 45 upvotes
+
+Top Highlight:
+"Finally got Azure OpenAI working in production. The content filtering
+is actually a selling point for enterprise clients."
+- X/@cloudarchitect, 34 retweets
+
+Competitive Context:
+• 3 comparisons to OpenAI direct API (all cited Azure's enterprise features positively)
+• 1 migration story: moved FROM AWS Bedrock TO Azure AI (positive)
+
+───────────────────────────────────────────────────────────────
+[SECTION 4: ADJACENT PRODUCTS PULSE]
+───────────────────────────────────────────────────────────────
+• VS Code: 71% positive, 203 mentions (strong week)
+• GitHub Actions: 58% positive, 45 mentions (stable)
+• Azure DevOps: 42% positive, 28 mentions (↓8%, pipeline complaints)
+• Azure Functions: 64% positive, 31 mentions (↑12%)
+
+───────────────────────────────────────────────────────────────
+[SECTION 5: COMPETITIVE INTELLIGENCE SUMMARY]
+───────────────────────────────────────────────────────────────
+Competitor Sentiment (for context):
+• Cursor: 74% positive (high enthusiasm, "game changer" mentions)
+• AWS: 61% positive (stable, mature perception)
+• OpenAI API: 68% positive (but 12% pricing complaints)
+
+Switching Signals This Week:
+• 3 "switched to Copilot" mentions
+• 1 "switched from Copilot to Cursor" mention
+• 2 "considering Azure" mentions (from AWS)
+
+───────────────────────────────────────────────────────────────
+[SECTION 6: ACTIONABLE INSIGHTS]
+───────────────────────────────────────────────────────────────
+1. INVESTIGATE: Copilot quality complaints post-VS Code update -
+   potential regression or perception issue?
+
+2. AMPLIFY: Azure Functions cold start praise - good content opportunity
+
+3. MONITOR: Azure AI Studio documentation complaints increasing -
+   consider creating tutorial content or flagging to docs team
+
+4. COMPETITIVE: Cursor enthusiasm high - track specific features
+   being praised (multi-file editing mentioned 4x)
+
+═══════════════════════════════════════════════════════════════
+[FOOTER]
+View full data | Configure alerts | Unsubscribe
+═══════════════════════════════════════════════════════════════
+```
+
+### Real-Time Alert Template
+
+```
+Subject: 🚨 HIGH-ENGAGEMENT ALERT: [PRODUCT] - [POSITIVE/NEGATIVE]
+From: social-listener-alerts@[domain]
+
+═══════════════════════════════════════════════════════════════
+⚡ HIGH-ENGAGEMENT ALERT
+═══════════════════════════════════════════════════════════════
+
+Product: GitHub Copilot
+Sentiment: NEGATIVE
+Engagement: 342 upvotes (threshold: 100)
+Source: Reddit r/programming
+Time: 2026-01-20 14:32 UTC
+
+POST CONTENT:
+"GitHub Copilot has mass-hallucinated AWS credentials into
+thousands of repos. This is a serious security issue that
+Microsoft needs to address immediately."
+
+CONTEXT:
+• Post is 2 hours old and climbing rapidly
+• 127 comments, mostly negative
+• Cross-posted to r/netsec
+
+RECOMMENDED ACTION:
+• Verify claim accuracy
+• Prepare response if confirmed
+• Monitor for mainstream tech press pickup
+
+───────────────────────────────────────────────────────────────
+[View Post] | [Snooze Product 1hr] | [Mark as Handled]
+═══════════════════════════════════════════════════════════════
 ```
 
 ### Key Metrics to Track
@@ -180,89 +384,108 @@ View full analysis | Configure preferences | Archive
 | Metric | Target | Cadence |
 |--------|--------|---------|
 | Email Delivery Success Rate | 99%+ | Daily |
-| Sentiment Accuracy | ≥80% | Weekly validation |
-| Themes Identified | 10+ | Daily |
-| Pain Points Surfaced | 3-5 | Daily |
-| Highlights Noted | 3-5 | Daily |
-| Data Freshness | <1 hour old | Real-time |
-| Marketing Usage | ≥2 insights/week | Weekly |
+| Alert Delivery Latency | <15 min | Per alert |
+| Per-Product Sentiment Accuracy | ≥80% | Weekly validation |
+| Competitor Mention Detection | ≥90% recall | Weekly validation |
+| Product Attribution Accuracy | ≥90% | Weekly validation |
+| Pain Points per Product | ≥3 | Weekly |
+| High-Engagement Alerts Sent | Track volume | Daily |
+| Alert False Positive Rate | <10% | Weekly |
+| Marketing Team Action Rate | ≥2 actions/week | Weekly |
 
 ---
 
-## 6. Success Metrics & KPIs
+## 8. Success Metrics & KPIs
 
 ### Technical Metrics
-- **System Uptime**: 99%+ (daily email sends)
+- **System Uptime**: 99%+ (daily email sends + alert delivery)
+- **Alert Latency**: <15 minutes from post threshold to notification
 - **Data Quality**: 0 critical errors, <5 warnings per day
-- **Processing Time**: <60 minutes from collection to delivery
+- **Processing Time**: <60 minutes from collection to daily email delivery
 - **Database Health**: 0 data loss events
 
 ### Product Metrics
 - **Engagement**: Marketing team opens email ≥80% of days
+- **Alert Response Rate**: Team acknowledges ≥90% of high-engagement alerts within 1 hour
 - **Actionability**: Team creates ≥2 pieces of content/week based on insights
-- **Accuracy**: 80%+ of sentiment classifications validated as correct
-- **Coverage**: 8+ Reddit communities + X trending keywords monitored
+- **Sentiment Accuracy**: 80%+ of sentiment classifications validated as correct
+- **Product Attribution Accuracy**: 90%+ of posts correctly tagged to products
+- **Coverage**: All 3 target products + 6 adjacent products + top 3 competitors per category
+
+### Competitive Intelligence Metrics
+- **Share of Voice Tracking**: Daily calculation per product category
+- **Comparison Detection Rate**: ≥90% of "X vs Y" posts identified
+- **Switching Signal Detection**: Track all "switched to/from" mentions
+- **Competitor Sentiment Baseline**: Weekly sentiment scores for top competitors
 
 ### Business Metrics (Future)
-- Reduction in product surprises (competitor launches)
-- Faster time-to-market for trend-based features
-- Improved messaging relevance (marketing team validation)
+- Reduction in product surprises (competitor launches, viral issues)
+- Faster response time to negative viral posts
+- Improved competitive positioning based on gap analysis
+- Marketing content aligned with actual developer sentiment
 
 ---
 
-## 7. Timeline & Phases
+## 9. Timeline & Phases
 
-### Phase 1: Foundation (Week 1)
+### Phase 1: Foundation
 - Set up environments, API credentials
+- Configure product aliases and search terms
 - Run existing tests
-- **Delivery**: Ready-to-code setup
+- **Delivery**: Ready-to-code setup with product configuration
 
-### Phase 2: Data Collection (Weeks 2-3)
-- Enhance Reddit collector (pagination, filtering)
-- Implement X API integration
+### Phase 2: Data Collection
+- Enhance Reddit collector for product-specific subreddits
+- Implement X API integration with product/competitor search terms
+- Add product tagging to data collection
 - Rate limiting and error handling
-- **Delivery**: Collect 500+ posts/day
+- **Delivery**: Collect 500+ product-relevant posts/day
 
-### Phase 3: Analysis & Intelligence (Weeks 4-5)
-- Define "developer trends" framework
-- Build sentiment/theme extraction prompts
-- Create analysis workflows
-- Design email template
-- **Delivery**: Working daily email
+### Phase 3: Analysis & Intelligence
+- Build product-specific sentiment analysis prompts
+- Implement competitive comparison detection
+- Create per-product analysis workflows
+- Design product-focused email template
+- Implement high-engagement detection and alerting
+- **Delivery**: Working daily email + real-time alerts
 
-### Phase 4: Integration & Deployment (Weeks 6-7)
+### Phase 4: Integration & Deployment
 - Connect pipeline end-to-end
-- Implement email scheduling
+- Implement email and Slack alert scheduling
 - Deploy to Azure
 - Create documentation
-- **Delivery**: Production system running
+- **Delivery**: Production system running with alerts
 
-### Phase 5: Optimization (Weeks 8+)
-- Dashboard/visualization
-- Historical trending
+### Phase 5: Optimization
+- Dashboard for product sentiment visualization
+- Historical trending by product
+- Competitive benchmarking reports
 - Performance tuning
 - Marketing tool integrations
 
 ---
 
-## 8. Constraints & Assumptions
+## 10. Constraints & Assumptions
 
 ### Constraints
-- **Cost**: Keep API costs <$300/month
+- **Cost**: Keep API costs <$300/month (increased budget for product-specific analysis)
 - **Privacy**: No storing personal data; aggregate only
 - **Compliance**: Respect Reddit/X ToS
 - **Scale**: Start with 500 posts/day, optimize later
+- **Alert Volume**: Cap at 10 high-engagement alerts per day to avoid fatigue
 
 ### Assumptions
-- Developers discussing problems/solutions on Reddit and X are representative
-- Sentiment analysis with Claude will be ≥80% accurate
-- Email delivery via standard SMTP is acceptable (v1)
-- Daily cadence is sufficient (not real-time)
-- Marketing team will act on insights
+- Developers discussing Microsoft products on Reddit and X are representative of broader sentiment
+- Product mentions can be accurately attributed (handling ambiguity like "Copilot" vs "Windows Copilot")
+- Sentiment analysis with Claude will be ≥80% accurate for product-specific content
+- High-engagement thresholds (100 upvotes, 50 retweets) are appropriate starting points
+- Daily email + real-time alerts provide sufficient coverage (not continuous monitoring)
+- Marketing team will respond to alerts within 1 hour during business hours
+- Competitor sentiment provides useful context for benchmarking
 
 ---
 
-## 9. Learning Objectives
+## 11. Learning Objectives
 
 ### For Spencer
 - Mastery of API integration (Reddit PRAW, X API)
@@ -287,28 +510,33 @@ View full analysis | Configure preferences | Archive
 
 ---
 
-## 10. Dependencies & Risks
+## 12. Dependencies & Risks
 
 ### External Dependencies
 - **Reddit API** - Free but rate-limited; PRAW library stability
-- **X API** - Free tier very limited; paid tier expensive
+- **X API** - Free tier very limited; may need paid tier for comprehensive coverage
 - **Claude API** - Cost variable based on usage; accuracy depends on prompts
 - **Email Service** - Need SMTP or SendGrid account
+- **Slack API** - For real-time alert delivery
 
 ### Key Risks & Mitigations
 
 | Risk | Impact | Mitigation |
 |------|--------|-----------|
-| Claude API costs exceed budget | High | Monitor usage weekly, optimize prompts |
-| Sentiment accuracy <80% | High | Validate with sample data, iterate prompts |
+| Claude API costs exceed budget | High | Monitor usage weekly, optimize prompts, batch analysis |
+| Product attribution errors (e.g., "Copilot" ambiguity) | High | Build disambiguation rules, validate with sample data |
+| Sentiment accuracy <80% | High | Validate with sample data, iterate prompts, use product context |
+| High-engagement alert fatigue | Medium | Tune thresholds, implement daily caps, add snooze functionality |
+| Missing competitor mentions | Medium | Regularly update competitor alias lists, monitor for new entrants |
 | Reddit/X API changes ToS | Medium | Have fallback data sources, monitor announcements |
+| Alert delivery latency >15 min | Medium | Implement continuous polling, optimize processing pipeline |
 | Email delivery fails silently | High | Implement monitoring, Slack fallback |
+| Competitor data gaps | Medium | Prioritize top 3 competitors per category, expand gradually |
 | Data quality issues | Medium | Add validation layer, log all anomalies |
-| Team loses interest | Low | Regular syncs, celebrate wins, clear roadmap |
 
 ---
 
-## 11. Non-Functional Requirements
+## 13. Non-Functional Requirements
 
 ### Performance
 - Daily data collection: <30 minutes
@@ -335,14 +563,19 @@ View full analysis | Configure preferences | Archive
 
 ---
 
-## 12. Appendix: Key Terminology
+## 14. Appendix: Key Terminology
 
-- **Theme**: A topic or concept discussed (e.g., "API Security", "Performance")
+- **Target Product**: Primary products being monitored (GitHub Copilot, Azure, Azure AI Foundry)
+- **Adjacent Product**: Related Microsoft products tracked for context (VS Code, GitHub Actions, etc.)
+- **Competitor**: Direct competitor products in the same category
 - **Sentiment**: Emotional tone (Positive, Neutral, Negative)
-- **Pain Point**: Problem or friction developers mention
-- **Highlight**: Solution, praise, or positive development
-- **Signal**: Early indicator of trend (low volume, high relevance)
-- **Trend**: Topic gaining momentum (increasing mentions week-over-week)
+- **Pain Point**: Problem or friction developers mention about a specific product
+- **Highlight**: Praise, success story, or positive mention for a specific product
+- **Share of Voice**: Percentage of mentions for a product vs competitors in its category
+- **Comparison Win Rate**: When products are directly compared, percentage favoring our product
+- **Switching Signal**: Mentions of moving from one product to another
+- **High-Engagement Post**: Post exceeding threshold (>100 upvotes or >50 retweets)
+- **Product Attribution**: Correctly identifying which product a post is discussing
 
 ---
 
@@ -351,8 +584,8 @@ View full analysis | Configure preferences | Archive
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | Jan 18, 2026 | GitHub Copilot | Initial draft |
-| | | | |
+| 2.0 | Jan 25, 2026 | Claude | Product-focused rewrite: Added target products (Copilot, Azure, Foundry), competitive intelligence, high-engagement alerts, adjacent product tracking |
 
 ---
 
-**Status**: Draft - Ready for review and refinement
+**Status**: Draft - Updated for product-specific monitoring
