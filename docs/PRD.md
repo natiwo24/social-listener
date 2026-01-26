@@ -85,8 +85,8 @@ These products are part of the broader Microsoft developer ecosystem and often a
 ## 4. Target Users & Use Cases
 
 ### Primary Users
-1. **Natalie (Product Marketing)** - Uses insights for campaign strategy, messaging, competitive positioning
-2. **Spencer (CEO/Technical)** - Uses insights for product roadmap, competitive intelligence
+1. **Natalie (CEO)** - Uses insights for campaign strategy, messaging, competitive positioning
+2. **Spencer (CTO)** - Uses insights for product roadmap, competitive intelligence
 3. **Marketing Managers** - Develop content calendars, respond to competitive narratives
 
 ### Key Use Cases
@@ -398,7 +398,8 @@ RECOMMENDED ACTION:
 ## 8. Success Metrics & KPIs
 
 ### Technical Metrics
-- **System Uptime**: 99%+ (daily email sends + alert delivery)
+- **Daily System sending uptime success**: 99%+ (daily email sends + alert delivery)
+- **Breaking alert delivery**: 99% of breaking events are detected and sent 
 - **Alert Latency**: <15 minutes from post threshold to notification
 - **Data Quality**: 0 critical errors, <5 warnings per day
 - **Processing Time**: <60 minutes from collection to daily email delivery
