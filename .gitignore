@@ -54,3 +54,7 @@ htmlcov/
 # OS
 Thumbs.db
 .DS_Store
+
+# Scratch/working docs (not for commit)
+SCRATCH_*.md
+scratch/
