@@ -5,6 +5,8 @@
 **Authors:** Spencer (CTO), with AI assistance  
 **Status:** Draft for Review
 
+> This is a proposed architecture, not the current deployment. For implemented behavior and local setup, see the [learning and operations guide](LEARNING_GUIDE.md).
+
 ---
 
 ## Table of Contents
